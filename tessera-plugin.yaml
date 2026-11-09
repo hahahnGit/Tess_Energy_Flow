@@ -1,6 +1,6 @@
-# Manifest of the energy_flow plugin. No code and no words: every name, label and hint is a key into
+# Manifest of the energy_flow_plus plugin. No code and no words: every name, label and hint is a key into
 # translations/<language>.json, part "app".
-id: energy_flow
+id: energy_flow_plus
 version: 0.8.1
 api: "0.7"
 icon: lightbulb          # must be from Tessera's icon set; tools/check.py tells you if another name fits better
