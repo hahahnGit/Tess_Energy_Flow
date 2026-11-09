@@ -1,0 +1,57 @@
+# Manifest of the energy_flow plugin. No code and no words: every name, label and hint is a key into
+# translations/<language>.json, part "app".
+id: energy_flow
+version: 0.8.1
+api: "0.7"
+icon: lightbulb          # must be from Tessera's icon set; tools/check.py tells you if another name fits better
+maintainer: hahahnGit
+license: MIT
+stage: beta
+topics: [energy]
+requires:
+  esphome: 2026.6.2
+boards: any
+flash_kb: 8
+
+# The screen reads these Home Assistant entities itself (ESPHome "homeassistant" sensors in plugin.yaml).
+# "{ef_solar}" stands for the entity a person chose in the input "solar", and so on.
+permissions:
+  read_entities:
+    - "{ef_solar}"
+    - "{ef_inverter}"
+    - "{ef_grid}"
+    - "{ef_battery}"
+    - "{ef_soc}"
+    - "{ef_home}"
+    - "{ef_wallbox}"
+    - "{ef_storage2}"
+
+inputs:
+  - { id: ef_solar,   kind: entity, domains: [sensor], scope: screen, label: in_solar }
+  - { id: ef_inverter, kind: entity, domains: [sensor], scope: screen, label: in_inverter, hint: in_inverter_hint }
+  - { id: ef_grid,    kind: entity, domains: [sensor], scope: screen, label: in_grid,    hint: in_grid_hint }
+  - { id: ef_battery, kind: entity, domains: [sensor], scope: screen, label: in_battery, hint: in_battery_hint }
+  - { id: ef_soc,     kind: entity, domains: [sensor], scope: screen, label: in_soc }
+  - { id: ef_home,    kind: entity, domains: [sensor], scope: screen, label: in_home }
+  - { id: ef_wallbox, kind: entity, domains: [sensor], scope: screen, label: in_wallbox }
+  - { id: ef_storage2, kind: entity, domains: [sensor], scope: screen, label: in_storage2, hint: in_storage2_hint }
+
+tiles:
+  - id: flow
+    name: tile_name
+    icon: lightbulb
+    sizes: { min: 1x1, max: 4x3 }
+    memory: 6500
+    options:
+      - { id: max_power,      kind: number, min: 500, max: 20000, step: 100, unit: W, default: 2000, label: opt_max_power, hint: opt_max_power_hint }
+      - { id: invert_grid,    kind: toggle, default: true,  label: opt_invert_grid,    hint: opt_invert_grid_hint }
+      - { id: invert_battery, kind: toggle, default: true,  label: opt_invert_battery, hint: opt_invert_battery_hint }
+      - { id: invert_storage2, kind: toggle, default: false, label: opt_invert_storage2, hint: opt_invert_storage2_hint }
+      - { id: label_pv,       kind: text, label: opt_label_pv,       hint: opt_label_hint }
+      - { id: label_wallbox,  kind: text, label: opt_label_wallbox,  hint: opt_label_hint }
+      - { id: label_grid,     kind: text, label: opt_label_grid,     hint: opt_label_hint }
+      - { id: label_battery,  kind: text, label: opt_label_battery,  hint: opt_label_battery_hint }
+      - { id: label_storage2,  kind: text, label: opt_label_storage2,  hint: opt_label_hint }
+      - { id: home_calc,      kind: toggle, default: false, label: opt_home_calc,      hint: opt_home_calc_hint }
+      - { id: dots,           kind: number, min: 1, max: 6, step: 1, unit: "", default: 2, label: opt_dots, hint: opt_dots_hint }
+      - { id: fps,            kind: number, min: 1, max: 4, step: 1, unit: fps, default: 2, label: opt_fps, hint: opt_fps_hint }

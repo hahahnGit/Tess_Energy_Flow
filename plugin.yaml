@@ -1,0 +1,56 @@
+# What a screen gets: the Home Assistant sensors the screen reads itself, and the component configured with them.
+# The ${...} values come from the inputs of tessera-plugin.yaml (input "solar" is ${EF_SOLAR}, and so on).
+# The defaults are example names only; pick your own sensors when the plugin is added.
+defaults:
+  EF_SOLAR: sensor.solar_power
+  EF_INVERTER: sensor.inverter_input_power
+  EF_GRID: sensor.grid_power
+  EF_BATTERY: sensor.battery_power
+  EF_SOC: sensor.battery_soc
+  EF_HOME: sensor.home_power
+  EF_WALLBOX: sensor.wallbox_power
+  EF_STORAGE2: sensor.storage2_power
+
+sensor:
+  - platform: homeassistant
+    id: energy_flow_solar
+    entity_id: ${EF_SOLAR}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_inverter
+    entity_id: ${EF_INVERTER}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_grid
+    entity_id: ${EF_GRID}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_battery
+    entity_id: ${EF_BATTERY}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_soc
+    entity_id: ${EF_SOC}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_home
+    entity_id: ${EF_HOME}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_wallbox
+    entity_id: ${EF_WALLBOX}
+    internal: true
+  - platform: homeassistant
+    id: energy_flow_storage2
+    entity_id: ${EF_STORAGE2}
+    internal: true
+
+energy_flow:
+  solar: energy_flow_solar
+  inverter: energy_flow_inverter
+  grid: energy_flow_grid
+  battery: energy_flow_battery
+  soc: energy_flow_soc
+  home: energy_flow_home
+  wallbox: energy_flow_wallbox
+  storage2: energy_flow_storage2
